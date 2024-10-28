@@ -20,6 +20,7 @@ export class MotoService {
   }
 
   async findAll() {
+    console.log('findAll() executed');
     return this.motoRepository.find();
   }
 
