@@ -1,8 +1,14 @@
-import { IsIn, Length } from 'class-validator';
+import { IsIn, IsOptional, Length } from 'class-validator';
 import { Location, LOCATIONS } from 'src/types/location';
+// import { Transform } from 'class-transformer';
 
 export class CreateMotoDto {
-  @Length(3, 64)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // @Transform(({ value }) => undefined, { toClassOnly: true })
+  // _id?: never; // Mark as `never` to prevent _id from being allowed in the DTO
+  // @Length(3, 64)
+  @IsOptional()
+  _id?: string;
   nombre_conductor: string;
   @Length(3, 64)
   marca: string;

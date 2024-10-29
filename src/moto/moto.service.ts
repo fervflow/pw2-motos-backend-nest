@@ -13,8 +13,10 @@ export class MotoService {
   ) {}
 
   async create(moto: CreateMotoDto) {
-    const newMoto = await this.motoRepository.save(moto);
-    console.log('FROM: moto.service:create:', moto);
+    const motoData = { ...moto };
+    delete motoData._id;
+    const newMoto = await this.motoRepository.save(motoData);
+    console.log('FROM: moto.service:create:', motoData);
     console.log('newMoto:', newMoto);
     return newMoto;
   }
@@ -33,6 +35,7 @@ export class MotoService {
   }
 
   async update(id: string, motoUpdate: Partial<CreateMotoDto>) {
+    delete motoUpdate._id;
     const moto = await this.findOne(id);
     Object.assign(moto, motoUpdate);
     return this.motoRepository.save(moto);
